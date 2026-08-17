@@ -28,8 +28,6 @@ const handleButtonClick = function() {
     console.log(`Button Clicked! Current total cost: ${totalCost}`);
 };
 
-// handleButtonClick();
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM fully loaded and parsed, App is ready for interaction')
     addItemButton.addEventListener('click', handleButtonClick);
