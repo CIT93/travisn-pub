@@ -7,19 +7,28 @@ const itemPrice = 15;
 let totalCost = 0;
 
 const handleButtonClick = function() {
-    totalCost += 1;
-    let message = 'Hello, you have been charged ${totalCost}.';
-    if(totalCost >= 5) {
-        message += ' Wow, you are a super buyer!';
-        totalDisplayElement.style.color = 'purple';
+    totalCost += itemPrice;
+    let message = `Current Total: $${totalCost}`;
+    if (totalCost >= 180) {
+        message += ' stop';
+        totalDisplayElement.style.color = 'red';
+    } else if (totalCost >= 150) {
+        message += ' please...';
+        totalDisplayElement.style.color = 'red';
+    } else if (totalCost >= 105) {
+        message += ' What are you doing?! Stop spending!';
+        totalDisplayElement.style.color = 'red';
+    } else if (totalCost >= 60) {
+        message += ' Wow, you are a super buyer! But now you have gone over budget!';
+        totalDisplayElement.style.color = 'red';
     } else {
-        totalDisplayElement.style.color = '#333';
+        totalDisplayElement.style.color = '#000000';
     }
     totalDisplayElement.textContent = message;
-    console.log('Button Clicked! Current total cost: ${totalCost}');
+    console.log(`Button Clicked! Current total cost: ${totalCost}`);
 };
 
-handleButtonClick();
+// handleButtonClick();
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM fully loaded and parsed, App is ready for interaction')
