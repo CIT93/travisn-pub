@@ -1,4 +1,5 @@
 console.log('Hello from app.js! Your JavaScript is connected and running!');
+import * as orderForm from './order-handler.js';
 
 const totalDisplayElement = document.getElementById('total-display');
 const addItemButton = document.getElementById('add-item-btn');
