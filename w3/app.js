@@ -1,36 +1,41 @@
 console.log('Hello from app.js! Your JavaScript is connected and running!');
 import * as orderForm from './order-handler.js';
 
-const totalDisplayElement = document.getElementById('total-display');
-const addItemButton = document.getElementById('add-item-btn');
-const itemPrice = 15;
-
-let totalCost = 0;
-
-const handleButtonClick = function() {
-    totalCost += itemPrice;
-    let message = `Current Total: $${totalCost}`;
-    if (totalCost >= 180) {
-        message += ' stop';
-        totalDisplayElement.style.color = 'red';
-    } else if (totalCost >= 150) {
-        message += ' please...';
-        totalDisplayElement.style.color = 'red';
-    } else if (totalCost >= 105) {
-        message += ' What are you doing?! Stop spending!';
-        totalDisplayElement.style.color = 'red';
-    } else if (totalCost >= 60) {
-        message += ' Wow, you are a super buyer! But now you have gone over budget!';
-        totalDisplayElement.style.color = 'red';
-    } else {
-        totalDisplayElement.style.color = '#000000';
-    }
-    totalDisplayElement.textContent = message;
-    console.log(`Button Clicked! Current total cost: ${totalCost}`);
+const orderFormElement = document.getElementById('order-form');
+const orderSummaryElement = document.getElementById('order-summary');
+const lexicalQuantity = {
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
 };
+
+const handleOrderSubmit = function (event) {
+    event.preventDefault();
+    const orderData = orderForm.getOrderInputs();
+    const lexicalQty = lexicalQuantity[orderData.qty] || orderData.qty;
+    let shirtNoun = 't-shirts';
+    if (orderData.qty === 1) {
+        shirtNoun = 't-shirt';
+    }
+    let message = `Ordered ${lexicalQty} ${orderData.size} ${shirtNoun}.`;
+    if (orderData.giftWrap) {
+        message = `Ordered ${lexicalQty} ${orderData.size} ${shirtNoun}, gift wrapped.`;
+    }
+    orderSummaryElement.textContent = message;
+};
+
+const init = function() {
+    orderFormElement.addEventListener('submit', handleOrderSubmit);
+    console.log('App initialized!');
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM fully loaded and parsed, App is ready for interaction')
-    addItemButton.addEventListener('click', handleButtonClick);
-    totalDisplayElement.textContent = 'Welcome, click the button below to start buying';
+    init();
 });
