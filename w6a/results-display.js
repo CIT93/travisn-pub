@@ -20,8 +20,11 @@ export const displayResults = function(results) {
     totalDisplay.textContent = results.totalPrice;
     qtyDisplay.textContent = results.qty;
     sizeDisplay.textContent = results.size;
-    giftDisplay.textContent = results.giftWrap ? 'Yes' : 'No';
-
+    if (results.giftWrap) {
+        giftDisplay.textContent = 'Yes';
+    } else {
+        giftDisplay.textContent = 'No';
+    }
     // Make the entire results section visible
     orderSummaryContainer.style.display = 'block';
 };
