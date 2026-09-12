@@ -24,7 +24,7 @@ export const loadOrders = function() {
             return JSON.parse(dataString); 
         }
     } catch (error) {
-        console.error(`Error loading entries from local storage: ${error}`);
+        console.error(`Error loading orders from local storage: ${error}`);
         localStorage.removeItem(TSHIRT_ORDERS_DATA);
     }
     return []; 

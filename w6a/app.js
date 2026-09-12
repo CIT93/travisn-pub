@@ -2,37 +2,14 @@ console.log('Hello from app.js! Your JavaScript is connected and running!');
 import * as orderForm from './order-handler.js';
 import * as priceCalculator from './price-calculator.js';
 import * as resultsDisplay from './results-display.js';
+import * as orderStorage from './order-storage.js';
 
 const orderFormElement = document.getElementById('order-form');
-// const orderSummaryElement = document.getElementById('order-summary');
-
-// const lexicalQuantity = {
-//     1: 'one',
-//     2: 'two',
-//     3: 'three',
-//     4: 'four',
-//     5: 'five',
-//     6: 'six',
-//     7: 'seven',
-//     8: 'eight',
-//     9: 'nine',
-// };
-
 const orders = [];
 
 const handleOrderSubmit = function (event) {
     event.preventDefault();
     const orderData = orderForm.getOrderInputs();
-    // const lexicalQty = lexicalQuantity[orderData.qty] || orderData.qty;
-    // let shirtNoun = 't-shirts';
-    // if (orderData.qty === 1) {
-    //     shirtNoun = 't-shirt';
-    // };
-    // let message = `Ordered ${lexicalQty} ${orderData.size} ${shirtNoun}.`;
-    // if (orderData.giftWrap) {
-    //     message = `Ordered ${lexicalQty} ${orderData.size} ${shirtNoun}, gift wrapped.`;
-    // };
-    // orderSummaryElement.textContent = message;
     const calculatedPrice = priceCalculator.calculateTotal(orderData);
     const newOrder = { 
         ...orderData,
@@ -45,6 +22,13 @@ const handleOrderSubmit = function (event) {
 };
 
 const init = function() {
+    const loadedOrders = orderStorage.loadOrders();
+       if (loadedOrders.length > 0) {
+        orders.push(...loadedOrders);
+        console.log("orders loaded from localStorage");
+    } else {
+        console.log("No orders found in localStorage starting fresh");
+    }
     orderFormElement.addEventListener('submit', handleOrderSubmit);
 };
 
