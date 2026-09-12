@@ -17,6 +17,7 @@ const handleOrderSubmit = function (event) {
         timestamp: new Date().toISOString(),
     };
     orders.push(newOrder);
+    orderStorage.saveOrders(orders);
     console.log(orders);
     resultsDisplay.displayResults(newOrder);
 };
