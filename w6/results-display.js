@@ -19,7 +19,7 @@ export const displayResults = function(results) {
     // console.log ('inside the displayResults function');
     totalDisplay.textContent = results.totalPrice;
     qtyDisplay.textContent = results.qty;
-    sizeDisplay.textContent = results.size;
+    sizeDisplay.textContent = formatOrderSize(results.size);
     if (results.giftWrap) {
         giftDisplay.textContent = 'Yes';
     } else {

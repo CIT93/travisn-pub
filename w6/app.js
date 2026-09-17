@@ -1,7 +1,7 @@
 console.log('Hello from app.js! Your JavaScript is connected and running!');
 import * as orderForm from './order-handler.js';
 import * as priceCalculator from './price-calculator.js';
-import * as resultsDisplay from './results-display.js';
+// import * as resultsDisplay from './results-display.js';
 import * as orderStorage from './order-storage.js';
 
 const orderFormElement = document.getElementById('order-form');
@@ -19,7 +19,7 @@ const handleOrderSubmit = function (event) {
     orders.push(newOrder);
     orderStorage.saveOrders(orders);
     console.log(orders);
-    resultsDisplay.displayResults(newOrder);
+    // resultsDisplay.displayResults(newOrder);
 };
 
 const init = function() {
